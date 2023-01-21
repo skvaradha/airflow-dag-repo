@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 
 from airflow import DAG
 from airflow.models.baseoperator import chain
-from airflow.providers.amazon.aws.operators.glue_crawler import AwsGlueCrawlerOperator
+from airflow.providers.amazon.aws.operators.glue_crawler import GlueCrawlerOperator
 from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import (
     KubernetesPodOperator,
 )
@@ -121,8 +121,8 @@ def add_athena_partition_task(customer: Customer):
     )
 
 
-def run_glue_crawler(cmd: str) -> AwsGlueCrawlerOperator:
-    return AwsGlueCrawlerOperator(config=dict(Name=cmd), task_id=f"{cmd}_glue_crawler")
+def run_glue_crawler(cmd: str) -> GlueCrawlerOperator:
+    return GlueCrawlerOperator(config=dict(Name=cmd), task_id=f"{cmd}_glue_crawler")
 
 
 def response_check(response, task_instance):
