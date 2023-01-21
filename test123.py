@@ -164,7 +164,7 @@ with DAG(
     concurrency=DAG_CONCURRENCY,
     default_args=dict(
         namespace="airflow",
-        service_account_name="pod-user",
+ #       service_account_name="pod-user",
         startup_timeout_seconds=500,
         log_events_on_failure=False,
         in_cluster=True,
